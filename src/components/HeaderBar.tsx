@@ -81,7 +81,24 @@ function StatusStrip({ pathname }: { pathname: string | null }) {
     <div className="flex items-center gap-4 text-[10px] md:text-xs opacity-80">
       <span>TIME: {time} / {date}</span>
       <span>| EMP INT: <span className="text-primary">98%</span></span>
-      <span>| DUST LVL: <span className="text-destructive">CLASS III (WARNING)</span></span>
+      <span>| DUST LVL: <span className="emergency-blink font-extrabold text-white bg-red-700/30 text-[9px] md:text-[10px] px-1 py-0 rounded ring-1 ring-red-500 shadow-[0_0_6px_rgba(239,68,68,0.6)]">CLASS III (WARNING)</span></span>
+      <style jsx>{`
+        @keyframes emergencyBlink {
+          0%, 100% {
+            color: #ffffff;
+            background-color: rgba(239, 68, 68, 0.35);
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.9), 0 0 24px rgba(239, 68, 68, 0.45);
+          }
+          50% {
+            color: #ffefef;
+            background-color: rgba(239, 68, 68, 0.1);
+            box-shadow: 0 0 4px rgba(239, 68, 68, 0.5);
+          }
+        }
+        .emergency-blink {
+          animation: emergencyBlink 0.9s steps(2, jump-start) infinite;
+        }
+      `}</style>
     </div>
   );
 }
