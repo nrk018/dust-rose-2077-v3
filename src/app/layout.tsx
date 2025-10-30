@@ -7,6 +7,7 @@ import Wave1 from "@/components/ui/wave-1";
 import HeaderBar from "@/components/HeaderBar";
 import SubNav from "@/components/SubNav";
 import StartupParticleSplash from "@/components/StartupParticleSplash";
+import { ResourcesProvider } from "@/lib/resources-store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,15 +58,17 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${stencil.variable} ${pixel.variable} ${chakraPetchItalic.variable} antialiased`}>
-        <div className="relative min-h-dvh w-full overflow-hidden">
-          <StartupParticleSplash/>
-          <Wave1 className="pointer-events-none fixed inset-0 -z-10"/>
-          <div className="w-full p-4 md:p-6">
-            <HeaderBar/>
-            <SubNav/>
-            {children}
+        <ResourcesProvider>
+          <div className="relative min-h-dvh w-full overflow-hidden">
+            <StartupParticleSplash/>
+            <Wave1 className="pointer-events-none fixed inset-0 -z-10"/>
+            <div className="w-full p-4 md:p-6">
+              <HeaderBar/>
+              <SubNav/>
+              {children}
+            </div>
           </div>
-        </div>
+        </ResourcesProvider>
         <Toaster richColors position="top-right"/>
       </body>
     </html>
